@@ -48,11 +48,26 @@ public class AlunoDAO {
     }
 
     public void excluir(int id) throws Exception {
+        if (possuiEmprestimoAberto(id)) {
+            throw new IllegalStateException("Este aluno possui empréstimo(s) em aberto e não pode ser excluído.");
+        }
         String sql = "DELETE FROM aluno WHERE id_aluno = ?";
         try (Connection conn = Conexao.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setInt(1, id);
             stmt.executeUpdate();
+        }
+    }
+
+    private boolean possuiEmprestimoAberto(int idAluno) throws Exception {
+        String sql = "SELECT COUNT(*) FROM emprestimo WHERE id_aluno = ? AND status = 'ATIVO'";
+        try (Connection conn = Conexao.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setInt(1, idAluno);
+            try (ResultSet rs = stmt.executeQuery()) {
+                rs.next();
+                return rs.getInt(1) > 0;
+            }
         }
     }
 

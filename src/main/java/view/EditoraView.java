@@ -128,8 +128,8 @@ public class EditoraView extends BorderPane {
         try {
             Editora editora = selecionada != null ? selecionada : new Editora();
             editora.setNome(campoNome.getText());
-            editora.setCnpj(campoCnpj.getText());
-            editora.setTelefone(campoTelefone.getText());
+            editora.setCnpj(Validador.apenasDigitos(campoCnpj.getText()));
+            editora.setTelefone(Validador.apenasDigitos(campoTelefone.getText()));
             editora.setEmail(campoEmail.getText());
             editora.setNacionalidade(campoNacionalidade.getText());
             editora.setEndereco_web(campoSiteWeb.getText());

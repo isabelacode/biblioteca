@@ -129,8 +129,8 @@ public class AlunoView extends BorderPane {
         try {
             Aluno aluno = selecionado != null ? selecionado : new Aluno();
             aluno.setNome(campoNome.getText());
-            aluno.setCpf(campoCpf.getText());
-            aluno.setTelefone(campoTelefone.getText());
+            aluno.setCpf(Validador.apenasDigitos(campoCpf.getText()));
+            aluno.setTelefone(Validador.apenasDigitos(campoTelefone.getText()));
             aluno.setEmail(campoEmail.getText());
             aluno.setEndereco(enderecoFields.getEndereco());
 
@@ -158,6 +158,8 @@ public class AlunoView extends BorderPane {
             dao.excluir(selecionado.getIdAluno());
             limpar();
             carregar();
+        } catch (IllegalStateException e) {
+            UiUtils.erro(e.getMessage());
         } catch (Exception e) {
             UiUtils.erro("Não foi possível excluir o aluno: " + e.getMessage());
         }

@@ -125,7 +125,7 @@ public class AutorView extends BorderPane {
         try {
             Autor autor = selecionado != null ? selecionado : new Autor();
             autor.setNome(campoNome.getText());
-            autor.setTelefone(campoTelefone.getText());
+            autor.setTelefone(Validador.apenasDigitos(campoTelefone.getText()));
             autor.setEmail(campoEmail.getText());
             autor.setPseudonimo(campoPseudonimo.getText());
             autor.setNacionalidade(campoNacionalidade.getText());

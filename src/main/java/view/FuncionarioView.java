@@ -132,8 +132,8 @@ public class FuncionarioView extends BorderPane {
         try {
             Funcionario funcionario = selecionado != null ? selecionado : new Funcionario();
             funcionario.setNome(campoNome.getText());
-            funcionario.setCpf(campoCpf.getText());
-            funcionario.setTelefone(campoTelefone.getText());
+            funcionario.setCpf(Validador.apenasDigitos(campoCpf.getText()));
+            funcionario.setTelefone(Validador.apenasDigitos(campoTelefone.getText()));
             funcionario.setEmail(campoEmail.getText());
             funcionario.setCargo(campoCargo.getText());
             funcionario.setEndereco(enderecoFields.getEndereco());
@@ -162,6 +162,8 @@ public class FuncionarioView extends BorderPane {
             dao.excluir(selecionado.getIdFuncionario());
             limpar();
             carregar();
+        } catch (IllegalStateException e) {
+            UiUtils.erro(e.getMessage());
         } catch (Exception e) {
             UiUtils.erro("Não foi possível excluir o funcionário: " + e.getMessage());
         }

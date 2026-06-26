@@ -39,6 +39,10 @@ public class Validador {
         return digitos.length() != 11 || digitos.charAt(2) == '9';
     }
 
+    public static String apenasDigitos(String texto) {
+        return texto == null ? null : texto.replaceAll("\\D", "");
+    }
+
     private static int calcularDigitoVerificador(int[] numeros, int quantidade, int pesoInicial) {
         int soma = 0;
         for (int i = 0; i < quantidade; i++) {

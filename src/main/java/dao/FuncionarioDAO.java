@@ -50,11 +50,26 @@ public class FuncionarioDAO {
     }
 
     public void excluir(int id) throws Exception {
+        if (possuiEmprestimoAberto(id)) {
+            throw new IllegalStateException("Este funcionário possui empréstimo(s) em aberto vinculado(s) e não pode ser excluído.");
+        }
         String sql = "DELETE FROM funcionario WHERE id_funcionario = ?";
         try (Connection conn = Conexao.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setInt(1, id);
             stmt.executeUpdate();
+        }
+    }
+
+    private boolean possuiEmprestimoAberto(int idFuncionario) throws Exception {
+        String sql = "SELECT COUNT(*) FROM emprestimo WHERE id_funcionario = ? AND status = 'ATIVO'";
+        try (Connection conn = Conexao.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setInt(1, idFuncionario);
+            try (ResultSet rs = stmt.executeQuery()) {
+                rs.next();
+                return rs.getInt(1) > 0;
+            }
         }
     }
 
