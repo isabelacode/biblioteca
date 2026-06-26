@@ -1,41 +1,25 @@
 package model;
 
-public class Autor {
+public class Autor extends Pessoa {
 
-    private int idAutor;
-    protected String nome;
-    protected String pseudonimo;
-    protected String nacionalidade;
-    protected String email;
-    protected String telefone;
-    protected Endereco endereco;
+    private String pseudonimo;
+    private String nacionalidade;
 
     public Autor() {
     }
 
     public Autor(String nome, String pseudonimo, String nacionalidade, String email, String telefone, Endereco endereco) {
-        this.nome = nome;
+        super(nome, telefone, email, endereco);
         this.pseudonimo = pseudonimo;
         this.nacionalidade = nacionalidade;
-        this.email = email;
-        this.telefone = telefone;
-        this.endereco = endereco;
     }
 
     public int getIdAutor() {
-        return idAutor;
+        return id;
     }
 
     public void setIdAutor(int idAutor) {
-        this.idAutor = idAutor;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
+        this.id = idAutor;
     }
 
     public String getPseudonimo() {
@@ -52,30 +36,6 @@ public class Autor {
 
     public void setNacionalidade(String nacionalidade) {
         this.nacionalidade = nacionalidade;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getTelefone() {
-        return telefone;
-    }
-
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
-    }
-
-    public Endereco getEndereco() {
-        return endereco;
-    }
-
-    public void setEndereco(Endereco endereco) {
-        this.endereco = endereco;
     }
 
     @Override

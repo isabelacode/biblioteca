@@ -72,7 +72,6 @@ public class Main extends Application {
         Label titulo = new Label("Biblioteca");
         titulo.getStyleClass().add("sidebar-titulo");
 
-        Label usuarioLogado = new Label("Olá, " + Sessao.getUsuarioLogado().getNomeUsuario());
         usuarioLogado.getStyleClass().add("sidebar-usuario");
 
         ToggleGroup grupo = new ToggleGroup();

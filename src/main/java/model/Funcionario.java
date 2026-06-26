@@ -2,23 +2,32 @@ package model;
 
 public class Funcionario extends Pessoa {
 
-    private int idFuncionario;
+    private String cpf;
     protected String cargo;
 
     public Funcionario() {
     }
 
     public Funcionario(String nome, String cpf, String telefone, String email, Endereco endereco, String cargo) {
-        super(nome, cpf, telefone, email, endereco);
+        super(nome, telefone, email, endereco);
+        this.cpf = cpf;
         this.cargo = cargo;
     }
 
     public int getIdFuncionario() {
-        return idFuncionario;
+        return id;
     }
 
     public void setIdFuncionario(int idFuncionario) {
-        this.idFuncionario = idFuncionario;
+        this.id = idFuncionario;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
     }
 
     public String getCargo() {

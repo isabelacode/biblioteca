@@ -2,21 +2,30 @@ package model;
 
 public class Aluno extends Pessoa {
 
-    private int idAluno;
+    private String cpf;
 
     public Aluno() {
     }
 
     public Aluno(String nome, String cpf, String telefone, String email, Endereco endereco) {
-        super(nome, cpf, telefone, email, endereco);
+        super(nome, telefone, email, endereco);
+        this.cpf = cpf;
     }
 
     public int getIdAluno() {
-        return idAluno;
+        return id;
     }
 
     public void setIdAluno(int idAluno) {
-        this.idAluno = idAluno;
+        this.id = idAluno;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
     }
 
     @Override

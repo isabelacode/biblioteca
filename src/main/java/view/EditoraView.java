@@ -15,6 +15,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import model.Editora;
+import util.Validador;
 
 public class EditoraView extends BorderPane {
 
@@ -118,6 +119,10 @@ public class EditoraView extends BorderPane {
     private void salvar() {
         if (campoNome.getText().isBlank()) {
             UiUtils.erro("O nome da editora é obrigatório.");
+            return;
+        }
+        if (!campoTelefone.getText().isBlank() && !Validador.isTelefoneValido(campoTelefone.getText())) {
+            UiUtils.erro("Telefone inválido.");
             return;
         }
         try {

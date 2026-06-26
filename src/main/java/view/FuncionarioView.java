@@ -15,6 +15,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import model.Funcionario;
+import util.Validador;
 
 public class FuncionarioView extends BorderPane {
 
@@ -118,6 +119,14 @@ public class FuncionarioView extends BorderPane {
     private void salvar() {
         if (campoNome.getText().isBlank()) {
             UiUtils.erro("O nome do funcionário é obrigatório.");
+            return;
+        }
+        if (!Validador.isCpfValido(campoCpf.getText())) {
+            UiUtils.erro("CPF inválido.");
+            return;
+        }
+        if (!campoTelefone.getText().isBlank() && !Validador.isTelefoneValido(campoTelefone.getText())) {
+            UiUtils.erro("Telefone inválido.");
             return;
         }
         try {

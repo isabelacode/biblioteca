@@ -15,6 +15,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import model.Autor;
+import util.Validador;
 
 public class AutorView extends BorderPane {
 
@@ -115,6 +116,10 @@ public class AutorView extends BorderPane {
     private void salvar() {
         if (campoNome.getText().isBlank()) {
             UiUtils.erro("O nome do autor é obrigatório.");
+            return;
+        }
+        if (!campoTelefone.getText().isBlank() && !Validador.isTelefoneValido(campoTelefone.getText())) {
+            UiUtils.erro("Telefone inválido.");
             return;
         }
         try {
